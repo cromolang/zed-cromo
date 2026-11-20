@@ -24,20 +24,27 @@ fn find_cromo(worktree: &Worktree) -> Result<String> {
     })
 }
 
-/// The source file that a task of `cromo` compiles: the first argument that ends with
-/// `.cro`, before a `--` that starts the arguments of the program.
+/// The source file that a task of `cromo` compiles: the first argument after the
+/// verb that is not an option, before a `--` that starts the arguments of the program.
+/// The task comes as it is written, with its variables still in it: the file of
+/// `cromo run $ZED_FILE` is the text `$ZED_FILE`, which Zed fills when the build runs.
 fn source_of(args: &[String]) -> Option<&String> {
-    args.iter().take_while(|arg| arg.as_str() != "--").find(|arg| arg.ends_with(".cro"))
+    args.iter().skip(1).take_while(|arg| arg.as_str() != "--").find(|arg| !arg.starts_with('-'))
 }
 
-/// Where `cromo build file.cro -o <this>` writes the executable to debug: next to the
+/// Where `cromo build file -o <this>` writes the executable to debug: next to the
 /// source, with a name of its own so that the program built for a run stays as it is.
 fn debug_executable(source: &str) -> String {
-    let stem = source.strip_suffix(".cro").unwrap_or(source);
     let (os, _) = zed::current_platform();
-    match os {
-        zed::Os::Windows => format!("{stem}.debug.exe"),
-        _ => format!("{stem}.debug"),
+    let suffix = match os {
+        zed::Os::Windows => ".debug.exe",
+        _ => ".debug",
+    };
+    match source.strip_suffix(".cro") {
+        Some(stem) => format!("{stem}{suffix}"),
+        // A variable of Zed, as $ZED_FILE: the folder and the name of the file come
+        // from its other variables.
+        None => format!("$ZED_DIRNAME/$ZED_STEM{suffix}"),
     }
 }
 
