@@ -1,0 +1,19 @@
+id = "cromo"
+name = "Cromo"
+version = "0.1.0"
+schema_version = 1
+authors = ["The Cromo authors"]
+description = "The Cromo language: syntax, the language server of cromo, build, run and test, and debugging."
+repository = "https://github.com/cromolang/zed-cromo"
+
+# While developing, `repository` can be the grammar on this computer, as
+# "file:///C:/dati/projects/tree-sitter-cromo", with a commit of it in `rev`.
+[grammars.cromo]
+repository = "https://github.com/cromolang/tree-sitter-cromo"
+rev = "c1e7dd928b35043fdcf0f3cab93f3b6667d118d5"
+
+[language_servers.cromo]
+name = "Cromo"
+languages = ["Cromo"]
+
+[debug_locators.cromo]

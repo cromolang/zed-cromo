@@ -1,0 +1,47 @@
+[
+  {
+    "label": "cromo run $ZED_RELATIVE_FILE",
+    "command": "cromo",
+    "args": ["run", "$ZED_FILE"],
+    "cwd": "$ZED_DIRNAME",
+    "tags": ["cromo-main"]
+  },
+  {
+    "label": "cromo build $ZED_RELATIVE_FILE",
+    "command": "cromo",
+    "args": ["build", "$ZED_FILE"],
+    "cwd": "$ZED_DIRNAME"
+  },
+  {
+    "label": "cromo build --release $ZED_RELATIVE_FILE",
+    "command": "cromo",
+    "args": ["build", "--release", "$ZED_FILE"],
+    "cwd": "$ZED_DIRNAME"
+  },
+  {
+    "label": "cromo test $ZED_RELATIVE_FILE",
+    "command": "cromo",
+    "args": ["test", "$ZED_FILE"],
+    "cwd": "$ZED_DIRNAME"
+  },
+  {
+    "label": "cromo test $ZED_CUSTOM_test_name",
+    "command": "cromo",
+    "args": ["test", "$ZED_FILE", "$ZED_CUSTOM_test_name"],
+    "cwd": "$ZED_DIRNAME",
+    "tags": ["cromo-test"]
+  },
+  {
+    "label": "cromo build (the project)",
+    "command": "cromo",
+    "args": ["build"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "cromo fmt $ZED_RELATIVE_FILE",
+    "command": "cromo",
+    "args": ["fmt", "$ZED_FILE"],
+    "cwd": "$ZED_DIRNAME",
+    "reveal": "never"
+  }
+]
