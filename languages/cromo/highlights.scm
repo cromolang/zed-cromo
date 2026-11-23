@@ -237,3 +237,18 @@
 
 (type_parameter
   ":" @punctuation.delimiter)
+
+; ---- Reserved words ----
+; Kept for the language to come: they are not names, and cromo refuses them.
+
+((identifier) @keyword
+  (#any-of? @keyword
+    "while" "do" "goto" "return" "yield" "defer" "class" "trait" "impl" "typedef"
+    "namespace" "using" "operator" "static" "virtual" "override" "null" "this" "delete" "as"
+    "is" "auto" "let" "var" "mut" "async" "await" "private" "protected" "macro"))
+
+((type_identifier) @keyword
+  (#any-of? @keyword
+    "while" "do" "goto" "return" "yield" "defer" "class" "trait" "impl" "typedef"
+    "namespace" "using" "operator" "static" "virtual" "override" "null" "this" "delete" "as"
+    "is" "auto" "let" "var" "mut" "async" "await" "private" "protected" "macro"))
