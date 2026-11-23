@@ -3,6 +3,10 @@
   "struct" @context
   name: (type_identifier) @name) @item
 
+(extend_declaration
+  "extend" @context
+  name: (type_identifier) @name) @item
+
 (enum_declaration
   "public"? @context
   "enum" @context

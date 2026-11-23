@@ -144,6 +144,7 @@
   "default"
   "else"
   "enum"
+  "extend"
   "extern"
   "finally"
   "for"
